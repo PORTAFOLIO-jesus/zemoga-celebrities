@@ -26,6 +26,10 @@ export default {
     getBadVotes() {
       return this.percentages.badPercentRounded + "%";
     },
+    getVotesComputedUpdated() {
+      this.styleVotes.gridTemplateColumns = `${this.percentages.goodPercentRounded}% ${this.percentages.badPercentRounded}%`;
+      return this.styleVotes;
+    },
   },
   created() {
     this.setVotes();
@@ -33,7 +37,7 @@ export default {
 };
 </script>
 <template>
-  <div class="grid-votes" :style="styleVotes">
+  <div class="grid-votes" :style="getVotesComputedUpdated">
     <div class="grid-votes__positive">
       <img src="assets/img/thumbs-up.svg" alt="thumbs up" />
       {{ getGoodVotes }}

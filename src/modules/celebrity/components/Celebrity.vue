@@ -12,26 +12,31 @@
       <div class="card__description">{{ celebrity.description }}</div>
     </div>
     <div class="card__occupation">
-      {{ timeOccupationCelebritty }}
+      <template v-if="votesButtons">
+        {{ timeOccupationCelebritty }}
+      </template>
+      <template v-else> Thank you for your vote! </template>
     </div>
 
     <!-- actions button -->
     <div class="card__buttons">
-      <div v-if="votesButtons" class="card__buttons-align">
-        <button
-          @click="goodVoteCelebrity"
-          class="icon-button card__butoon-selected"
-          aria-label="thumbs up"
-        >
-          <img src="assets/img/thumbs-up.svg" alt="thumbs up" />
-        </button>
-        <button
-          @click="badVoteCelebrity"
-          class="icon-button card__butoon-selected"
-          aria-label="thumbs down"
-        >
-          <img src="assets/img/thumbs-down.svg" alt="thumbs down" />
-        </button>
+      <div class="card__buttons-align">
+        <template v-if="votesButtons">
+          <button
+            @click="goodVoteCelebrity"
+            class="icon-button card__butoon-selected"
+            aria-label="thumbs up"
+          >
+            <img src="assets/img/thumbs-up.svg" alt="thumbs up" />
+          </button>
+          <button
+            @click="badVoteCelebrity"
+            class="icon-button card__butoon-selected"
+            aria-label="thumbs down"
+          >
+            <img src="assets/img/thumbs-down.svg" alt="thumbs down" />
+          </button>
+        </template>
         <button
           class="card__button__vote-selected"
           :disabled="buttonVote"
