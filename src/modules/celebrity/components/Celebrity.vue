@@ -342,7 +342,7 @@ export default {
   width: 101%;
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 1070px) {
   /* grid */
   /* description */
   .card-grid .card__name {
@@ -364,8 +364,31 @@ export default {
     -webkit-line-clamp: 2;
   }
   .card-grid .card__occupation {
-    bottom: 80px;
+    bottom: 6.5rem;
     right: 25px;
+  }
+}
+@media screen and (max-width: 719px) {
+  .card-grid .card__occupation {
+    bottom: 8.5rem;
+    right: 3rem;
+  }
+  .card-grid .card__percentages {
+    position: absolute;
+    bottom: -5px;
+    left: 10px;
+    color: #fff;
+    height: 38px;
+    width: 90%;
+  }
+  .dropdown__select-hidden {
+    background-color: yellow;
+  }
+  .card-grid {
+    padding-right: 20px;
+    padding-bottom: 15px;
+    width: 348px;
+    height: 348px;
   }
 }
 </style>

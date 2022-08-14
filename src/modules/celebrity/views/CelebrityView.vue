@@ -64,8 +64,6 @@ export default {
     </Dropdown>
   </div>
 
-  <!-- <div class="celebrity__content__view"> -->
-
   <div class="celebrity-cards__grid">
     <celebrity
       v-for="(itemCelebrity, index) in listAllCelebrities"
@@ -87,5 +85,11 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+@media screen and (max-width: 719px) {
+  .celebrity-cards__grid {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
 }
 </style>
