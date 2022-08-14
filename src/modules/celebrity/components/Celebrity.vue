@@ -42,7 +42,9 @@
       </div>
     </div>
     <!-- porcentajes -->
-    <div class="card__percentages"></div>
+    <div class="card__percentages">
+      <votes-percentages :percentages="percentVotesTotal"></votes-percentages>
+    </div>
   </div>
 </template>
 
@@ -54,7 +56,12 @@ import { percentGoodBadVotes } from "../../../helpers/numbers.js";
 import { litelTimeNumberDays } from "../../../helpers/dates.js";
 export default {
   name: "Celebrity",
-  components: {},
+  components: {
+    VoteCelebrity: defineAsyncComponent(() => import("./VoteCelebrity.vue")),
+    VotesPercentages: defineAsyncComponent(() =>
+      import("./VotesPercentages.vue")
+    ),
+  },
   data() {
     return {
       isVotting: true,
