@@ -1,0 +1,91 @@
+<script>
+import Dropdown from "../components/Dropdown.vue";
+import DropdownContent from "../components/DropdownContent.vue";
+import { defineAsyncComponent } from "vue";
+import { mapActions, mapGetters } from "vuex";
+
+export default {
+  components: {
+    Dropdown,
+    DropdownContent,
+    Celebrity: defineAsyncComponent(() =>
+      import("../components/Celebrity.vue")
+    ),
+  },
+  data() {
+    return {
+      typeDropDown: "",
+      toggleTitleDropDown: "List",
+    };
+  },
+  methods: {
+    ...mapActions("celebrity", ["loadCelebrities"]),
+    gridClickView() {
+      this.typeDropDown = "grid";
+      this.toggleTitleDropDown = "Grid";
+    },
+    listClickView() {
+      this.typeDropDown = "list";
+      this.toggleTitleDropDown = "List";
+    },
+  },
+  computed: {
+    ...mapGetters("celebrity", ["getAllCelebrities"]),
+    listAllCelebrities() {
+      return this.getAllCelebrities();
+    },
+    setTypeDragDown() {
+      return this.typeDropDown;
+    },
+    setTitleToggleTitle() {
+      return this.toggleTitleDropDown;
+    },
+  },
+  created() {
+    this.loadCelebrities();
+  },
+};
+</script>
+
+<template>
+  <div class="subtitle__celebrity">
+    <div class="subtitle__celebrity__section">Previous Rullings</div>
+
+    <Dropdown class="dropdown__select">
+      <template v-slot:toggler>
+        <button>{{ setTitleToggleTitle }}</button>
+      </template>
+      <DropdownContent class="dropdown__content">
+        <div @click="listClickView">List</div>
+      </DropdownContent>
+      <DropdownContent class="dropdown__content">
+        <div @click="gridClickView">Grid</div>
+      </DropdownContent>
+    </Dropdown>
+  </div>
+
+  <!-- <div class="celebrity__content__view"> -->
+
+  <div class="celebrity-cards__grid">
+    <celebrity
+      v-for="(itemCelebrity, index) in listAllCelebrities"
+      :key="index"
+      :celebrity="itemCelebrity"
+      :id="index"
+      :type="setTypeDragDown"
+    >
+    </celebrity>
+  </div>
+</template>
+<style scope>
+.celebrity-cards__grid {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+.celebrity-cards__list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+</style>
