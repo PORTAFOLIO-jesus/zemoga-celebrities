@@ -11,8 +11,9 @@ The Project was made with Vite and Vue 3.
 - run project with npm:
  >**npm run dev**
 
-- build project with npm:
- >**npm run build**
+- run test unit with npm:
+ >**npm run test:unit**
+
 
 
 
