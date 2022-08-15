@@ -20,6 +20,14 @@
 
     <!-- actions button -->
     <div class="card__buttons">
+      <div class="card-buget__winner" :style="styleWinner">
+        <template v-if="winnerVotesVisibility">
+          <img src="assets/img/thumbs-up.svg" alt="thumbs up" />
+        </template>
+        <template v-else>
+          <img src="assets/img/thumbs-down.svg" alt="thumbs down" />
+        </template>
+      </div>
       <div class="card__buttons-align">
         <template v-if="votesButtons">
           <button
@@ -77,6 +85,8 @@ export default {
         positive: 0,
         negative: 0,
       },
+      winnerVotes: false,
+      styleWinner: "",
     };
   },
   props: {
@@ -143,6 +153,23 @@ export default {
       this.percentsVotes.goodPercentRounded = goodPercentRounded;
 
       return this.percentsVotes;
+    },
+    winnerVotesVisibility() {
+      if (
+        this.percentsVotes.goodPercentRounded >
+        this.percentsVotes.badPercentRounded
+      ) {
+        this.winnerVotes = true;
+        this.styleWinner = {
+          backgroundColor: "#3cbbb499",
+        };
+      } else {
+        this.winnerVotes = false;
+        this.styleWinner = {
+          backgroundColor: "#f9ad1d99",
+        };
+      }
+      return this.winnerVotes;
     },
     card() {
       return this.type === "grid" ? "card-grid" : "card-list";
@@ -211,26 +238,45 @@ export default {
   content: "";
   background: linear-gradient(
     to left,
-    #b1b3b5c4,
-    #919395fe,
-    #919395fe,
-    #919395fe,
-    #919395fe,
-    #484d5054
+    #5d6062fe,
+    #5d6062fe,
+    #1d1e1fc4,
+    #636669fe,
+    #696b6dfe,
+    #767778fe,
+    #767778fe,
+    #767778fe,
+    #767778fe,
+    #05050500,
+    #05050500
   );
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 200px;
-  z-index: 2;
+  z-index: 20;
 }
 .card-list__content {
-  z-index: 3;
+  z-index: 30;
   color: white;
 }
 .card-list__img img {
   width: 200px;
+}
+.card-list .card-buget__winner {
+  position: absolute;
+  right: 1035px;
+  bottom: 58px;
+  width: 40px;
+  height: 45px;
+  margin: 1px;
+}
+.card-list .card-buget__winner img {
+  position: relative;
+  width: 25px;
+  top: 10px;
+  left: 5px;
 }
 
 .card__butoon-selected {
@@ -294,19 +340,32 @@ export default {
   margin-right: 15px;
 }
 
+.card-grid .card-buget__winner {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  right: 107px;
+  bottom: 120px;
+}
+.card-grid .card-buget__winner img {
+  position: relative;
+  top: 5px;
+  left: 5px;
+}
+
 /* list */
 /* description */
 .card-list .card__name {
   position: relative;
   font-size: 28px;
-  left: 2.3rem;
+  left: 0.3rem;
   top: 0.5rem;
 }
 .card-list .card__description {
   position: relative;
   top: 1rem;
-  left: 2.3rem;
-
+  left: 0.3rem;
+  width: 65%;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -315,8 +374,18 @@ export default {
 }
 .card-list .card__occupation {
   position: absolute;
-  bottom: 80px;
+  top: 10px;
   right: 25px;
+  z-index: 31;
+  color: #fff;
+}
+
+.card-list .card__button__vote-selected {
+  width: 135px;
+  height: 45px;
+  color: #fff;
+  background-color: rgb(55, 55, 55);
+  border: 1px solid #fff;
 }
 
 /* actions buttons */
@@ -325,18 +394,36 @@ export default {
   bottom: 50px;
   right: 25px;
 }
+.card-list .card__buttons {
+  position: absolute;
+  bottom: 100px;
+  right: 25px;
+  z-index: 32;
+}
+
+.card-list .card__butoon-selected {
+  height: 45px;
+  padding: 10px;
+  margin-right: 15px;
+}
 
 /* percets */
 .card-list .card__percentages {
   position: absolute;
-  bottom: 5px;
+  bottom: -1px;
   color: #fff;
-  height: 36px;
+  height: 40px;
   width: 100%;
+  z-index: 33;
 }
+
+.card-list .grid-votes__positive {
+  height: 35px;
+}
+
 .card-grid .card__percentages {
   position: absolute;
-  bottom: -1px;
+  bottom: 7px;
   color: #fff;
   height: 36px;
   width: 101%;
@@ -369,13 +456,19 @@ export default {
   }
 }
 @media screen and (max-width: 719px) {
+  .card-grid {
+    padding-right: 20px;
+    padding-bottom: 15px;
+    width: 348px;
+    height: 348px;
+  }
   .card-grid .card__occupation {
     bottom: 8.5rem;
     right: 3rem;
   }
   .card-grid .card__percentages {
     position: absolute;
-    bottom: -5px;
+    bottom: 4px;
     left: 10px;
     color: #fff;
     height: 38px;
@@ -384,11 +477,17 @@ export default {
   .dropdown__select-hidden {
     background-color: yellow;
   }
-  .card-grid {
-    padding-right: 20px;
-    padding-bottom: 15px;
-    width: 348px;
-    height: 348px;
+  .card-grid .card-buget__winner {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    right: 127px;
+    bottom: 120px;
+  }
+  .card-grid .card-buget__winner img {
+    position: relative;
+    top: 5px;
+    left: 5px;
   }
 }
 </style>

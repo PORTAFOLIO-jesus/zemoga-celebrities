@@ -65,8 +65,10 @@ export default {
 }
 .grid-votes__negative img {
   padding-left: 8px;
+  margin: 5px;
 }
 .grid-votes__positive img {
   padding-right: 8px;
+  margin: 5px;
 }
 </style>
