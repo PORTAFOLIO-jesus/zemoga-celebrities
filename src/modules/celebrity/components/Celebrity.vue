@@ -233,6 +233,7 @@ export default {
   width: 100%;
   position: relative;
   z-index: 1;
+  margin-bottom: 15px;
 }
 .card-list::after {
   content: "";
