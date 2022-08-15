@@ -16,6 +16,16 @@ export default {
     return {
       typeDropDown: "",
       toggleTitleDropDown: "List",
+      items: [
+        {
+          type: "list",
+          name: "List",
+        },
+        {
+          type: "grid",
+          name: "Grid",
+        },
+      ],
     };
   },
   methods: {
@@ -28,6 +38,10 @@ export default {
       this.typeDropDown = "list";
       this.toggleTitleDropDown = "List";
     },
+    optionSelected(item){
+      this.typeDropDown = item.type;
+      this.toggleTitleDropDown = item.name;
+    }
   },
   computed: {
     ...mapGetters("celebrity", ["getAllCelebrities"]),
@@ -55,12 +69,16 @@ export default {
       <template v-slot:toggler>
         <button>{{ setTitleToggleTitle }}</button>
       </template>
-      <DropdownContent class="dropdown__content">
-        <div @click="listClickView">List</div>
-      </DropdownContent>
-      <DropdownContent class="dropdown__content">
-        <div @click="gridClickView">Grid</div>
-      </DropdownContent>
+      <div class="dropdown__content">
+        <DropdownContent :items="items" :optionSelected="optionSelected"/>
+      </div>
+
+      <!--<div @click="listClickView">List</div>
+        </DropdownContent>
+        <DropdownContent class="dropdown__content">
+          <div @click="gridClickView">Grid</div>
+        </DropdownContent>
+        -->
     </Dropdown>
   </div>
 
