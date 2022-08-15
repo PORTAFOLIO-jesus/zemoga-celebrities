@@ -18,8 +18,7 @@
       <template v-else> Thank you for your vote! </template>
     </div>
 
-    <!-- actions button -->
-    <div class="card__buttons">
+    <div class="card-buget">
       <div class="card-buget__winner" :style="styleWinner">
         <template v-if="winnerVotesVisibility">
           <img src="assets/img/thumbs-up.svg" alt="thumbs up" />
@@ -28,6 +27,10 @@
           <img src="assets/img/thumbs-down.svg" alt="thumbs down" />
         </template>
       </div>
+    </div>
+
+    <!-- actions button -->
+    <div class="card__buttons">
       <div class="card__buttons-align">
         <template v-if="votesButtons">
           <button
@@ -265,15 +268,15 @@ export default {
 .card-list__img img {
   width: 200px;
 }
-.card-list .card-buget__winner {
+.card-list .card-buget .card-buget__winner {
   position: absolute;
-  right: 1035px;
-  bottom: 58px;
+  right: 1060px;
+  top: 0px;
   width: 40px;
   height: 45px;
   margin: 1px;
 }
-.card-list .card-buget__winner img {
+.card-list .card-buget .card-buget__winner img {
   position: relative;
   width: 25px;
   top: 10px;
@@ -341,17 +344,17 @@ export default {
   margin-right: 15px;
 }
 
-.card-grid .card-buget__winner {
+.card-grid .card-buget .card-buget__winner {
   position: relative;
-  width: 30px;
-  height: 30px;
-  right: 107px;
-  bottom: 120px;
+  width: 40px;
+  height: 40px;
+  right: 350px;
+  bottom: 1px;
 }
-.card-grid .card-buget__winner img {
+.card-grid .card-buget .card-buget__winner img {
   position: relative;
-  top: 5px;
-  left: 5px;
+  top: 10px;
+  left: 10px;
 }
 
 /* list */
@@ -478,17 +481,13 @@ export default {
   .dropdown__select-hidden {
     background-color: yellow;
   }
-  .card-grid .card-buget__winner {
+  .card-grid .card-buget .card-buget__winner {
     position: relative;
-    width: 30px;
-    height: 30px;
-    right: 127px;
-    bottom: 120px;
+    right: 350px;
+    bottom: 0px;
   }
-  .card-grid .card-buget__winner img {
+  .card-grid .card-buget .card-buget__winner img {
     position: relative;
-    top: 5px;
-    left: 5px;
   }
 }
 </style>
